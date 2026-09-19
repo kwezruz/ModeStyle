@@ -1,0 +1,6 @@
+{
+  "name": "modestyle.uz",
+  "description": "Zamonaviy streetwear kiyimlar va brend krossovkalar do'koni. Google orqali qulay ro'yxatdan o'tish.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

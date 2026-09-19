@@ -1,0 +1,54 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile registered via Google Auth",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "name": { "type": "string", "maxLength": 128 },
+        "photoURL": { "type": "string", "maxLength": 1000 },
+        "phone": { "type": "string", "maxLength": 32 },
+        "address": { "type": "string", "maxLength": 256 },
+        "city": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "email", "name"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer order placed in modestyle store",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "orderNumber": { "type": "string", "maxLength": 64 },
+        "customerName": { "type": "string", "maxLength": 128 },
+        "phone": { "type": "string", "maxLength": 32 },
+        "city": { "type": "string", "maxLength": 128 },
+        "address": { "type": "string", "maxLength": 256 },
+        "deliveryMethod": { "type": "string", "enum": ["courier", "pickup"] },
+        "subtotal": { "type": "number" },
+        "discountAmount": { "type": "number" },
+        "totalAmount": { "type": "number" },
+        "paymentMethod": { "type": "string", "enum": ["card", "cash"] },
+        "paymentStatus": { "type": "string", "enum": ["receipt_submitted", "paid", "rejected", "cash_on_delivery"] },
+        "receiptImage": { "type": "string", "maxLength": 2000000 },
+        "orderStatus": { "type": "string", "enum": ["new", "processing", "shipped", "delivered"] },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "orderNumber", "customerName", "phone", "totalAmount", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile accessible by the user or admin"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Orders created by users, manageable by admin"
+    }
+  }
+}
